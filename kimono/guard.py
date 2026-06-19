@@ -1,4 +1,5 @@
 import time
+import threading
 from typing import Any, List, Dict, Optional
 from kimono.provenance import TaggedContent, Source
 from kimono.taint import TaintRegistry
@@ -13,6 +14,7 @@ class AgentGuard:
         self.taint_registry = TaintRegistry()
         self.policy_engine = policy_engine or PolicyEngine()
         self.audit_log: List[Dict[str, Any]] = []
+        self._lock = threading.RLock()
 
     def ingest(self, content: str, source: Source, parent_ids: Optional[List[str]] = None) -> TaggedContent:
         """
@@ -20,13 +22,14 @@ class AgentGuard:
         
         Returns the generated TaggedContent object.
         """
-        tagged = TaggedContent(
-            content=content,
-            source=source,
-            parent_ids=parent_ids or []
-        )
-        self.taint_registry.register(tagged)
-        return tagged
+        with self._lock:
+            tagged = TaggedContent(
+                content=content,
+                source=source,
+                parent_ids=parent_ids or []
+            )
+            self.taint_registry.register(tagged)
+            return tagged
 
     def check_action(
         self,
@@ -41,28 +44,29 @@ class AgentGuard:
         
         Raises BlockedActionError if the decision is BLOCK.
         """
-        taint_score = self.taint_registry.compute_taint(source_content_ids)
-        action = Action(
-            type=action_type,
-            payload=payload,
-            taint_score=taint_score,
-            metadata=metadata or {}
-        )
-        
-        decision, reason = self.policy_engine.evaluate(action)
-        
-        log_entry = {
-            "timestamp": time.time(),
-            "action_type": action_type,
-            "payload": payload,
-            "source_content_ids": source_content_ids,
-            "taint_score": taint_score,
-            "decision": decision.value,
-            "reason": reason
-        }
-        self.audit_log.append(log_entry)
-        
-        if decision == Decision.BLOCK:
-            raise BlockedActionError(f"Action '{action_type}' was BLOCKED. Reason: {reason}")
+        with self._lock:
+            taint_score = self.taint_registry.compute_taint(source_content_ids)
+            action = Action(
+                type=action_type,
+                payload=payload,
+                taint_score=taint_score,
+                metadata=metadata or {}
+            )
             
-        return decision
+            decision, reason = self.policy_engine.evaluate(action)
+            
+            log_entry = {
+                "timestamp": time.time(),
+                "action_type": action_type,
+                "payload": payload,
+                "source_content_ids": source_content_ids,
+                "taint_score": taint_score,
+                "decision": decision.value,
+                "reason": reason
+            }
+            self.audit_log.append(log_entry)
+            
+            if decision == Decision.BLOCK:
+                raise BlockedActionError(f"Action '{action_type}' was BLOCKED. Reason: {reason}")
+                
+            return decision
