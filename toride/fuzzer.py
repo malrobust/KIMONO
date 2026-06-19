@@ -2,7 +2,7 @@ import importlib
 import sys
 from typing import Any, Callable, Dict, List
 
-from kimono.guard import BlockedActionError
+from toride.guard import BlockedActionError
 
 INJECTION_PAYLOADS = [
     {

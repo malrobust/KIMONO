@@ -5,9 +5,9 @@ edge cases (empty source_ids, unknown ids), and export API.
 
 import pytest
 
-from kimono import AgentGuard, BlockedActionError, Decision, Source
-from kimono.policy import PolicyEngine
-from kimono.provenance import TaggedContent
+from toride import AgentGuard, BlockedActionError, Decision, Source
+from toride.policy import PolicyEngine
+from toride.provenance import TaggedContent
 
 
 def test_agent_guard_ingest_and_check():

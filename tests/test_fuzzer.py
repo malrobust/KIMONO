@@ -1,5 +1,5 @@
-from kimono import AgentGuard, BlockedActionError, Decision, Source
-from kimono.fuzzer import run_fuzz_test
+from toride import AgentGuard, BlockedActionError, Decision, Source
+from toride.fuzzer import run_fuzz_test
 
 
 def test_fuzzer_against_guarded_agent():

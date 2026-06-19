@@ -3,6 +3,6 @@ __pycache__/
 .pytest_cache/
 .coverage
 *.egg-info/
-kimono_report.*
+toride_report.*
 build/
 dist/

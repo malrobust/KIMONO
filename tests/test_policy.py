@@ -3,8 +3,8 @@ Extended tests for PolicyEngine: default rules, custom rules, rule ordering,
 default_decision, and ALLOW path.
 """
 
-from kimono.guard import AgentGuard, BlockedActionError
-from kimono.policy import Action, Decision, PolicyEngine, Rule
+from toride.guard import AgentGuard, BlockedActionError
+from toride.policy import Action, Decision, PolicyEngine, Rule
 
 
 def test_credential_use_blocked_when_tainted():

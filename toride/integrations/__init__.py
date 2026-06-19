@@ -1,4 +1,4 @@
-from kimono.integrations.langgraph_adapter import (
+from toride.integrations.langgraph_adapter import (
     LangGraphAgentGuardAdapter,
     RequireApprovalError,
     guard_tool,

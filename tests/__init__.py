@@ -1,1 +1,1 @@
-# Kimono test suite
+# Toride test suite

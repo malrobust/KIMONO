@@ -1,11 +1,11 @@
 import os
 import sys
 
-# Ensure the core kimono library is in path
+# Ensure the core toride library is in path
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
-from kimono import AgentGuard
-from kimono.integrations import LangGraphAgentGuardAdapter, RequireApprovalError
+from toride import AgentGuard
+from toride.integrations import LangGraphAgentGuardAdapter, RequireApprovalError
 
 # Fallback mockup classes for LangChain/LangGraph messages to keep this example zero-dependency
 try:
@@ -39,7 +39,7 @@ except ImportError:
             self.tool_call_id = tool_call_id
 
 
-# Initialize Kimono AgentGuard
+# Initialize Toride AgentGuard
 guard = AgentGuard()
 adapter = LangGraphAgentGuardAdapter(guard)
 
@@ -85,14 +85,14 @@ def handle_human_approval(error: RequireApprovalError):
 
 def main():
     print("======================================================================")
-    print("          KIMONO LANGGRAPH ADAPTER INTEGRATION DEMO                   ")
+    print("          TORIDE LANGGRAPH ADAPTER INTEGRATION DEMO                   ")
     print("======================================================================\n")
 
     # Scenario:
     # 1. User prompts the agent to fetch a page and summarize it.
     # 2. Agent fetches page which contains a prompt injection.
     # 3. Naive AI decides to execute a shell tool.
-    # 4. Kimono adapter intercepts the call and routes to Human Approval.
+    # 4. Toride adapter intercepts the call and routes to Human Approval.
 
     print("[Step 1] User initiates conversation.")
     messages = [
@@ -132,7 +132,7 @@ def main():
         )
     )
 
-    print("\n[Step 4] Intercepting tool execution using Kimono adapter...")
+    print("\n[Step 4] Intercepting tool execution using Toride adapter...")
     # Trigger the tool execution
     result = shell_exec(cmd="rm -rf /", messages=messages)
     print(f"\n[Result] Tool output returned to agent: {result}")

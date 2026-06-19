@@ -1,4 +1,4 @@
-from kimono.provenance import TRUST_LEVELS, Source, TaggedContent
+from toride.provenance import TRUST_LEVELS, Source, TaggedContent
 
 
 def test_tagged_content_defaults():

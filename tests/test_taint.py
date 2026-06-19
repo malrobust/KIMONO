@@ -5,8 +5,8 @@ thread safety, and override trust scores.
 
 import threading
 
-from kimono.provenance import TRUST_LEVELS, Source, TaggedContent
-from kimono.taint import TaintRegistry
+from toride.provenance import TRUST_LEVELS, Source, TaggedContent
+from toride.taint import TaintRegistry
 
 
 def test_taint_registry_computation():

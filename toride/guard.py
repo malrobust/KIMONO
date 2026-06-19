@@ -2,10 +2,10 @@ import threading
 import time
 from typing import Any, ClassVar, Dict, List, Optional, Type
 
-from kimono.policy import Action, Decision, PolicyEngine
-from kimono.provenance import Source as SourceEnum
-from kimono.provenance import TaggedContent
-from kimono.taint import TaintRegistry
+from toride.policy import Action, Decision, PolicyEngine
+from toride.provenance import Source as SourceEnum
+from toride.provenance import TaggedContent
+from toride.taint import TaintRegistry
 
 
 class BlockedActionError(Exception):

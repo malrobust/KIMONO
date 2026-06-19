@@ -1,13 +1,13 @@
-from kimono.guard import AgentGuard, BlockedActionError
-from kimono.policy import Action, Decision, PolicyEngine, Rule
-from kimono.provenance import TRUST_LEVELS, Source, TaggedContent
-from kimono.taint import TaintRegistry
+from toride.guard import AgentGuard, BlockedActionError
+from toride.policy import Action, Decision, PolicyEngine, Rule
+from toride.provenance import TRUST_LEVELS, Source, TaggedContent
+from toride.taint import TaintRegistry
 
 try:
     from importlib.metadata import PackageNotFoundError, version
 
     try:
-        __version__ = version("kimono-guard")
+        __version__ = version("toride")
     except PackageNotFoundError:
         __version__ = "0.1.0"
 except ImportError:

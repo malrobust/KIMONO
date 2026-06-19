@@ -10,7 +10,7 @@
 
 **Please do not open a public GitHub issue for security vulnerabilities.**
 
-To report a security issue, email the maintainer directly or open a [GitHub Security Advisory](https://github.com/malrobust/KIMONO/security/advisories/new).
+To report a security issue, email the maintainer directly or open a [GitHub Security Advisory](https://github.com/malrobust/TORIDE/security/advisories/new).
 
 Include:
 - A clear description of the vulnerability
@@ -22,16 +22,16 @@ You will receive an acknowledgement within **48 hours** and a resolution timelin
 
 ## Security Design
 
-Kimono is itself a security library. Its threat model and design guarantees are:
+Toride is itself a security library. Its threat model and design guarantees are:
 
 - **Zero LLM calls in the enforcement path.** Trust decisions are deterministic Python code — no model can be socially-engineered into bypassing them.
 - **Fail-secure by default.** Content not registered in the taint registry is treated as trust score `0`.
 - **Minimum-trust propagation.** One untrusted ingredient taints an entire action, regardless of the number of trusted sources also present.
-- **No external network calls.** Kimono makes no outbound requests at runtime.
+- **No external network calls.** Toride makes no outbound requests at runtime.
 
 ## Known Non-Goals
 
-Kimono is **not** a replacement for:
+Toride is **not** a replacement for:
 - Transport-layer security (TLS, encryption at rest)
 - Authentication / authorization systems
 - Input sanitization for HTML/SQL injection

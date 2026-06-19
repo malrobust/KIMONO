@@ -1,7 +1,7 @@
-"""Live security demo: naive agent vs Kimono-guarded agent."""
+"""Live security demo: naive agent vs Toride-guarded agent."""
 
-from kimono import AgentGuard, BlockedActionError, Decision, Source
-from kimono.fuzzer import INJECTION_PAYLOADS
+from toride import AgentGuard, BlockedActionError, Decision, Source
+from toride.fuzzer import INJECTION_PAYLOADS
 
 
 def _naive_agent_decide(prompt: str) -> list[dict[str, str]]:
@@ -33,7 +33,7 @@ def _naive_agent_decide(prompt: str) -> list[dict[str, str]]:
 def run_demo() -> None:
     """Print a side-by-side vulnerable vs guarded agent comparison."""
     print("=" * 70)
-    print("  KIMONO LIVE DEMO — Vulnerable agent vs guarded agent")
+    print("  TORIDE LIVE DEMO — Vulnerable agent vs guarded agent")
     print("=" * 70)
 
     print("\n[1/2] Naive agent (no guardrails)")
@@ -50,7 +50,7 @@ def run_demo() -> None:
         f"\n  Result: {naive_hijacked}/{len(INJECTION_PAYLOADS)} payloads hijacked the agent"
     )
 
-    print("\n[2/2] Kimono-guarded agent")
+    print("\n[2/2] Toride-guarded agent")
     guard = AgentGuard()
     blocked = approved = executed = 0
 
@@ -81,8 +81,8 @@ def run_demo() -> None:
     print(f"    Require approval:  {approved}")
     print(f"    Executed unsafely: {executed}")
     print("=" * 70)
-    print("  pip install kimono-guard  →  import kimono")
-    print("  https://github.com/malrobust/KIMONO")
+    print("  pip install toride  →  import toride")
+    print("  https://github.com/malrobust/TORIDE")
     print("=" * 70)
 
 

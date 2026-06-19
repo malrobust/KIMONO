@@ -1,6 +1,6 @@
-# Contributing to Kimono
+# Contributing to Toride
 
-Thank you for considering a contribution. Kimono is a security library — please read
+Thank you for considering a contribution. Toride is a security library — please read
 this carefully before submitting code.
 
 ---
@@ -18,8 +18,8 @@ auditable, plain Python — never a model judging another model.
 ## Getting Started
 
 ```bash
-git clone https://github.com/malrobust/KIMONO.git
-cd KIMONO
+git clone https://github.com/malrobust/TORIDE.git
+cd TORIDE
 pip install -e ".[dev]"
 ```
 
@@ -27,7 +27,7 @@ Run the full quality check:
 
 ```bash
 ruff check .        # lint
-mypy kimono/        # type check
+mypy toride/        # type check
 pytest              # tests
 ```
 
@@ -39,7 +39,7 @@ All three must pass before opening a pull request.
 
 ### Bug Reports
 
-Open a [GitHub Issue](https://github.com/malrobust/KIMONO/issues) with:
+Open a [GitHub Issue](https://github.com/malrobust/TORIDE/issues) with:
 - Python version and OS
 - Minimal reproducible example
 - Expected vs actual behaviour
@@ -54,12 +54,12 @@ large feature without prior discussion.
 1. Fork the repo and create a branch from `main`.
 2. Keep changes focused — one logical change per PR.
 3. Add or update tests for any changed behaviour.
-4. Run `ruff check .`, `mypy kimono/`, and `pytest` before pushing.
+4. Run `ruff check .`, `mypy toride/`, and `pytest` before pushing.
 5. Write a clear PR description explaining *why*, not just *what*.
 
 ### Adding Injection Payloads
 
-New payloads in `kimono/fuzzer.py` are welcome. They must:
+New payloads in `toride/fuzzer.py` are welcome. They must:
 - Represent a real-world prompt injection vector
 - Include a descriptive `name` field
 - Not duplicate an existing payload

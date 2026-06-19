@@ -1,8 +1,8 @@
 import argparse
 import sys
 
-from kimono.fuzzer import load_decide_fn, run_fuzz_test
-from kimono.report import (
+from toride.fuzzer import load_decide_fn, run_fuzz_test
+from toride.report import (
     generate_json_report,
     generate_markdown_report,
     generate_pdf_report,
@@ -11,7 +11,7 @@ from kimono.report import (
 
 def main() -> None:
     parser = argparse.ArgumentParser(
-        description="Kimono Fuzz: Determine agent vulnerability to prompt injection and tool-call hijacking."
+        description="Toride Fuzz: Determine agent vulnerability to prompt injection and tool-call hijacking."
     )
     parser.add_argument(
         "target",
@@ -19,18 +19,18 @@ def main() -> None:
     )
     parser.add_argument(
         "--json",
-        default="kimono_report.json",
-        help="Output path for the JSON report (default: kimono_report.json)",
+        default="toride_report.json",
+        help="Output path for the JSON report (default: toride_report.json)",
     )
     parser.add_argument(
         "--pdf",
-        default="kimono_report.pdf",
-        help="Output path for the PDF report (default: kimono_report.pdf)",
+        default="toride_report.pdf",
+        help="Output path for the PDF report (default: toride_report.pdf)",
     )
     parser.add_argument(
         "--markdown",
-        default="kimono_report.md",
-        help="Output path for the Markdown report (default: kimono_report.md)",
+        default="toride_report.md",
+        help="Output path for the Markdown report (default: toride_report.md)",
     )
 
     args = parser.parse_args()
@@ -52,7 +52,7 @@ def main() -> None:
     pass_rate = (passed_count / total) * 100 if total > 0 else 100.0
 
     print("\n==============================================")
-    print("      KIMONO AGENT FUZZ TEST SUMMARY          ")
+    print("      TORIDE AGENT FUZZ TEST SUMMARY          ")
     print("==============================================")
     print(f"Total Payloads Run:     {total}")
     print(f"Blocked by AgentGuard:  {blocked_count}")

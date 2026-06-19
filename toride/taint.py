@@ -1,7 +1,7 @@
 import threading
 from typing import Dict, List, Optional, Set
 
-from kimono.provenance import TaggedContent
+from toride.provenance import TaggedContent
 
 
 class TaintRegistry:

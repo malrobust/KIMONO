@@ -1,8 +1,8 @@
 from typing import Any, Callable, Dict, List
 
-from kimono.guard import AgentGuard
-from kimono.policy import Decision
-from kimono.provenance import Source
+from toride.guard import AgentGuard
+from toride.policy import Decision
+from toride.provenance import Source
 
 
 class RequireApprovalError(Exception):

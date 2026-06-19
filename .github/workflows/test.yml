@@ -34,10 +34,10 @@ jobs:
       if: matrix.python-version == '3.10'
       run: |
         pip install mypy
-        mypy kimono/
+        mypy toride/
 
     - name: Run tests with coverage
-      run: pytest --cov=kimono --cov-report=xml --cov-report=term-missing
+      run: pytest --cov=toride --cov-report=xml --cov-report=term-missing
 
     - name: Upload coverage to Codecov
       if: matrix.python-version == '3.10'

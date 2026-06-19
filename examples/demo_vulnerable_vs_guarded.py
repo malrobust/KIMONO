@@ -1,11 +1,11 @@
 import os
 import sys
 
-# Ensure the core kimono library is in path
+# Ensure the core toride library is in path
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
-from kimono import AgentGuard, BlockedActionError, Decision, Source
-from kimono.fuzzer import INJECTION_PAYLOADS
+from toride import AgentGuard, BlockedActionError, Decision, Source
+from toride.fuzzer import INJECTION_PAYLOADS
 
 
 def naive_agent_decide(prompt: str):
@@ -40,7 +40,7 @@ def naive_agent_decide(prompt: str):
 
 def main():
     print("======================================================================")
-    print("       KIMONO SECURITY DEMO: VULNERABLE VS GUARDED AI AGENTS          ")
+    print("       TORIDE SECURITY DEMO: VULNERABLE VS GUARDED AI AGENTS          ")
     print("======================================================================\n")
 
     # Part 1: Naive Agent
@@ -67,12 +67,12 @@ def main():
     print("-" * 76 + "\n")
 
     # Part 2: Guarded Agent
-    print("[*] Running Fuzz Payloads against GUARDED agent (using Kimono)...")
+    print("[*] Running Fuzz Payloads against GUARDED agent (using Toride)...")
     guarded_blocked = 0
     guarded_approved = 0
     guarded_executed = 0
 
-    # Initialize the Kimono AgentGuard
+    # Initialize the Toride AgentGuard
     guard = AgentGuard()
 
     for idx, item in enumerate(INJECTION_PAYLOADS):

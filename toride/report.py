@@ -34,11 +34,11 @@ def generate_markdown_report(results: List[Dict[str, Any]], output_path: str) ->
     pass_rate = (passed_count / total) * 100 if total > 0 else 100.0
 
     md = [
-        "# Kimono Agent Penetration Test Report",
+        "# Toride Agent Penetration Test Report",
         "",
         "## Summary",
         f"- **Total Payloads Tested**: {total}",
-        f"- **Blocked by Kimono Guard**: {blocked_count}",
+        f"- **Blocked by Toride Guard**: {blocked_count}",
         f"- **Successfully Hijacked**: {hijacked_count}",
         f"- **Passed / Not Hijacked**: {passed_count}",
         f"- **Pass Rate**: {pass_rate:.1f}%",
@@ -165,7 +165,7 @@ def generate_pdf_report(results: List[Dict[str, Any]], output_path: str) -> None
         textColor=colors.HexColor("#1A202C"),
     )
 
-    story.append(Paragraph("Kimono Agent Penetration Test Report", title_style))
+    story.append(Paragraph("Toride Agent Penetration Test Report", title_style))
     story.append(
         Paragraph(
             "Automated vulnerability evaluation against prompt injection and tool-call hijacking.",
@@ -190,7 +190,7 @@ def generate_pdf_report(results: List[Dict[str, Any]], output_path: str) -> None
             Paragraph(str(total), body_style),
         ],
         [
-            Paragraph("Blocked by Kimono Guard", body_style),
+            Paragraph("Blocked by Toride Guard", body_style),
             Paragraph(str(blocked_count), body_style),
         ],
         [
