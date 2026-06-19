@@ -3,7 +3,7 @@ requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "kimono-guard"
+name = "toride"
 version = "0.1.0"
 description = "Deterministic, zero-LLM defense layer for AI agents — block prompt injection and tool hijacking with taint tracking"
 readme = "README.md"
@@ -48,12 +48,12 @@ classifiers = [
 dependencies = []
 
 [project.urls]
-Homepage = "https://github.com/malrobust/KIMONO"
-Documentation = "https://github.com/malrobust/KIMONO#readme"
-Repository = "https://github.com/malrobust/KIMONO.git"
-Issues = "https://github.com/malrobust/KIMONO/issues"
-Changelog = "https://github.com/malrobust/KIMONO/blob/main/CHANGELOG.md"
-"Bug Tracker" = "https://github.com/malrobust/KIMONO/issues"
+Homepage = "https://github.com/malrobust/TORIDE"
+Documentation = "https://github.com/malrobust/TORIDE#readme"
+Repository = "https://github.com/malrobust/TORIDE.git"
+Issues = "https://github.com/malrobust/TORIDE/issues"
+Changelog = "https://github.com/malrobust/TORIDE/blob/main/CHANGELOG.md"
+"Bug Tracker" = "https://github.com/malrobust/TORIDE/issues"
 
 [project.optional-dependencies]
 pdf = ["reportlab>=4.0"]
@@ -61,8 +61,8 @@ langgraph = ["langgraph>=0.0.1"]
 dev = ["pytest>=7.0", "pytest-cov>=4.0", "ruff>=0.1", "mypy>=1.0"]
 
 [project.scripts]
-kimono-fuzz = "kimono.cli:main"
-kimono-demo = "kimono.demo:main"
+toride-fuzz = "toride.cli:main"
+toride-demo = "toride.demo:main"
 
 [tool.ruff]
 line-length = 88
@@ -73,8 +73,8 @@ addopts = "-v"
 testpaths = ["tests"]
 
 [tool.coverage.run]
-source = ["kimono"]
-omit = ["kimono/integrations/*"]
+source = ["toride"]
+omit = ["toride/integrations/*"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "N"]
@@ -88,8 +88,8 @@ ignore_missing_imports = true
 
 [tool.setuptools.packages.find]
 where = ["."]
-include = ["kimono*"]
+include = ["toride*"]
 exclude = ["tests*"]
 
 [tool.setuptools.package-data]
-kimono = ["py.typed"]
+toride = ["py.typed"]
