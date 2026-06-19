@@ -34,8 +34,12 @@ class PolicyEngine:
         self.rules: List[Rule] = []
         self._load_default_rules()
 
-    def add_rule(self, rule: Rule) -> None:
-        self.rules.append(rule)
+    def add_rule(self, rule: Rule, prepend: bool = False) -> None:
+        """Add a rule. If prepend=True, the rule runs before all existing rules."""
+        if prepend:
+            self.rules.insert(0, rule)
+        else:
+            self.rules.append(rule)
 
     def evaluate(self, action: Action) -> Tuple[Decision, str]:
         """

@@ -1,9 +1,10 @@
 import threading
 import time
-from typing import Any, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List, Optional, Type
 
 from kimono.policy import Action, Decision, PolicyEngine
-from kimono.provenance import Source, TaggedContent
+from kimono.provenance import Source as SourceEnum
+from kimono.provenance import TaggedContent
 from kimono.taint import TaintRegistry
 
 
@@ -14,6 +15,9 @@ class BlockedActionError(Exception):
 
 
 class AgentGuard:
+    # Expose Source enum directly on AgentGuard for ergonomic access
+    Source: ClassVar[Type[SourceEnum]] = SourceEnum
+
     def __init__(self, policy_engine: Optional[PolicyEngine] = None):
         self.taint_registry = TaintRegistry()
         self.policy_engine = policy_engine or PolicyEngine()
@@ -21,17 +25,38 @@ class AgentGuard:
         self._lock = threading.RLock()
 
     def ingest(
-        self, content: str, source: Source, parent_ids: Optional[List[str]] = None
+        self,
+        content: str,
+        source: SourceEnum,
+        parent_ids: Optional[List[str]] = None,
+        trust_score: Optional[int] = None,
     ) -> TaggedContent:
         """
         Tags and registers incoming content.
 
+        Optionally override the default trust score for the source.
         Returns the generated TaggedContent object.
         """
         with self._lock:
-            tagged = TaggedContent(
-                content=content, source=source, parent_ids=parent_ids or []
-            )
+            kwargs: Dict[str, Any] = {
+                "content": content,
+                "source": source,
+                "parent_ids": parent_ids or [],
+            }
+            if trust_score is not None:
+                kwargs["trust_score"] = trust_score
+            tagged = TaggedContent(**kwargs)
+            self.taint_registry.register(tagged)
+            return tagged
+
+    def ingest_tagged(self, tagged: TaggedContent) -> TaggedContent:
+        """
+        Registers a pre-built TaggedContent object directly.
+
+        Useful when content has already been constructed with custom
+        metadata outside of AgentGuard.
+        """
+        with self._lock:
             self.taint_registry.register(tagged)
             return tagged
 

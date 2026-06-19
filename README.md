@@ -12,8 +12,10 @@
 </p>
 
 <p align="center">
+  <img src="https://img.shields.io/github/actions/workflow/status/malrobust/KIMONO/test.yml?branch=main&style=flat-square&label=CI" alt="CI status">
+  <img src="https://img.shields.io/pypi/v/kimono?style=flat-square&color=111111" alt="PyPI version">
+  <img src="https://img.shields.io/pypi/pyversions/kimono?style=flat-square&color=111111" alt="Python versions">
   <img src="https://img.shields.io/badge/zero--LLM-enforcement-111111?style=flat-square" alt="Zero-LLM enforcement">
-  <img src="https://img.shields.io/badge/works%20with-LangGraph-111111?style=flat-square" alt="Works with LangGraph">
   <img src="https://img.shields.io/badge/license-MIT-111111?style=flat-square" alt="MIT license">
 </p>
 
@@ -57,17 +59,23 @@ Before executing any external tool or sensitive operation, Kimono calculates the
 
 ## Install
 
-Install Kimono from source:
-
 ```bash
-pip install -e .
+pip install kimono
 ```
 
-To run PDF reports or LangGraph integrations, install with extras:
+To enable PDF reports or the LangGraph integration, install with extras:
 
 ```bash
-pip install -e ".[pdf,langgraph]"
+pip install "kimono[pdf]"          # PDF reports via reportlab
+pip install "kimono[langgraph]"    # LangGraph/LangChain adapter
+pip install "kimono[pdf,langgraph]"  # both
 ```
+
+> **Developing locally?** Clone the repo and install in editable mode:
+> ```bash
+> git clone https://github.com/malrobust/KIMONO.git && cd KIMONO
+> pip install -e ".[dev]"
+> ```
 
 ---
 
