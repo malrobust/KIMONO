@@ -2,10 +2,10 @@
 
 **Deterministic, zero-LLM security boundary for AI agents.**
 
-[![CI](https://img.shields.io/github/actions/workflow/status/malrobust/KIMONO/test.yml?branch=main&style=flat-square&label=CI)](https://github.com/malrobust/KIMONO/actions)
-[![PyPI](https://img.shields.io/pypi/v/toride-guard?style=flat-square&color=111111)](https://pypi.org/project/toride-guard/)
-[![Downloads](https://img.shields.io/pypi/dm/toride-guard?style=flat-square&color=111111)](https://pypi.org/project/toride-guard/)
-[![Python](https://img.shields.io/pypi/pyversions/toride-guard?style=flat-square&color=111111)](https://pypi.org/project/toride-guard/)
+[![CI](https://img.shields.io/github/actions/workflow/status/malrobust/TORIDE/test.yml?branch=main&style=flat-square&label=CI)](https://github.com/malrobust/TORIDE/actions)
+[![PyPI](https://img.shields.io/pypi/v/toride?style=flat-square&color=111111)](https://pypi.org/project/toride/)
+[![Downloads](https://img.shields.io/pypi/dm/toride?style=flat-square&color=111111)](https://pypi.org/project/toride/)
+[![Python](https://img.shields.io/pypi/pyversions/toride?style=flat-square&color=111111)](https://pypi.org/project/toride/)
 [![License: MIT](https://img.shields.io/badge/license-MIT-111111?style=flat-square)](LICENSE)
 [![Zero LLM](https://img.shields.io/badge/enforcement-zero--LLM-111111?style=flat-square)]()
 
@@ -14,7 +14,7 @@
 > **toride blocks it in plain Python — no model judging another model.**
 
 ```bash
-pip install toride-guard
+pip install toride
 ```
 
 ```python
@@ -27,7 +27,7 @@ guard.check_action("shell_exec", {"cmd": "rm -rf /"}, source_content_ids=[doc.id
 # → BlockedActionError or REQUIRE_APPROVAL
 ```
 
-**[⭐ Star on GitHub](https://github.com/malrobust/KIMONO)** · **[Run live demo](#live-demo)** · **[LangGraph integration](#langgraph-integration)**
+**[⭐ Star on GitHub](https://github.com/malrobust/TORIDE)** · **[Run live demo](#live-demo)** · **[LangGraph integration](#langgraph-integration)**
 
 ---
 
@@ -52,7 +52,7 @@ toride tracks **where every piece of context came from** (user, web, email, file
 See toride block 6 real prompt-injection payloads in seconds:
 
 ```bash
-pip install toride-guard
+pip install toride
 toride-demo
 ```
 
@@ -67,17 +67,15 @@ toride-fuzz my_agent.module:decide_fn
 ## Install
 
 ```bash
-pip install toride-guard          # core library (import toride)
-pip install "toride-guard[pdf]"   # + PDF fuzz reports
-pip install "toride-guard[langgraph]"  # + LangGraph adapter
+pip install toride                 # core library (import toride)
+pip install "toride[pdf]"         # + PDF fuzz reports
+pip install "toride[langgraph]"   # + LangGraph adapter
 ```
-
-> **Note:** PyPI package is `toride-guard` (the name `toride` is taken). Import stays `import toride`.
 
 **Develop locally:**
 
 ```bash
-git clone https://github.com/malrobust/KIMONO.git && cd KIMONO
+git clone https://github.com/malrobust/TORIDE.git && cd TORIDE
 pip install -e ".[dev]"
 ```
 
@@ -183,8 +181,8 @@ MIT.
 
 If toride saves your agent from a bad day:
 
-1. **[⭐ Star the repo](https://github.com/malrobust/KIMONO)** — it helps others find it
-2. **Share** — `pip install toride-guard` works anywhere Python runs
+1. **[⭐ Star the repo](https://github.com/malrobust/TORIDE)** — it helps others find it
+2. **Share** — `pip install toride` works anywhere Python runs
 3. **Open an issue** — feature requests and bug reports welcome
 
 Built for LangGraph, LangChain, and any Python agent that calls tools.
