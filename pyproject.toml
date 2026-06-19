@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "kimono"
+version = "0.1.0"
+description = "Deterministic, zero-LLM AI Agent Defense Layer against prompt injection and tool hijacking"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Topic :: Security",
+]
+dependencies = []
+
+[project.optional-dependencies]
+pdf = ["reportlab>=4.0"]
+langgraph = ["langgraph>=0.0.1"]
+dev = ["pytest>=7.0"]
+
+[project.scripts]
+kimono-fuzz = "kimono.cli:main"
